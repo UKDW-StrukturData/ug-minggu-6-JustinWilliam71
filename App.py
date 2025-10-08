@@ -58,7 +58,20 @@ else:
     filter = st.text_input("Filter Nilai") # input angka filter
 
 if (filter != ""):
-    if (filterSelectBox == ">"):
-        st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] > int(filter)]) # cara filter
-    # TODO: lanjutkan code di atas
-    # note: cara filter ada di modul
+    mengfilter = em.getDataFrame()
+    try:
+        filtering = int(filter)
+        if (filterSelectBox == ">"):
+            st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] > int(filtering)]) # cara filter
+        # TODO: lanjutkan code di atas
+        # note: cara filter ada di modul
+        elif (filterSelectBox == "<"):
+            st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] < int(filter)]) # cara filter
+        elif (filterSelectBox == "="):
+            st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] == int(filter)]) # cara filter
+        elif (filterSelectBox == "<="):
+            st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] <= int(filter)]) # cara filter
+        elif (filterSelectBox == ">="):
+            st.table(em.getDataFrame()[em.getDataFrame()[targetFilterColumn] >= int(filter)]) # cara filter
+    except:
+        st.error("Filtering harus berupa angka")
